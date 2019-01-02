@@ -1,0 +1,33 @@
+{
+    "name": "week1login",
+    "version": "1.0.0",
+    "description": "周考一 登录",
+    "main": "gulpfile.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/15210633458/week1login.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/15210633458/week1login/issues"
+    },
+    "homepage": "https://github.com/15210633458/week1login#readme",
+    "dependencies": {
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.2.3",
+        "gulp": "^4.0.0",
+        "gulp-autoprefixer": "*",
+        "gulp-babel": "^8.0.0",
+        "gulp-clean-css": "*",
+        "gulp-concat": "^2.6.1",
+        "gulp-htmlmin": "*",
+        "gulp-sass": "*",
+        "gulp-uglify": "*",
+        "gulp-webserver": "^0.9.1"
+    }
+}
