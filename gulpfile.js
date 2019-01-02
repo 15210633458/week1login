@@ -7,6 +7,9 @@ var uglify = require('gulp-uglify');
 var babel = require('gulp-babel')
 var html = require('gulp-htmlmin');
 var server = require('gulp-webserver');
+var fs = require('fs');
+var url = require('url')
+var path = require('path')
 
 
 gulp.task('scss', function() {
@@ -15,7 +18,7 @@ gulp.task('scss', function() {
         .pipe(autoprefixer()) //前缀
         .pipe(concat('all.css'))
         .pipe(clean()) //压缩css
-        .pipe(gulp.dest('./css'))
+        .pipe(gulp.dest('./src/css'))
 })
 gulp.task('js', function() {
     return gulp.src('./src/js/*.js')
@@ -30,7 +33,26 @@ gulp.task('watch', function() {
     gulp.watch('./src/js/*.js', gulp.series('js'))
 })
 gulp.task('copy', function() {
-    return gulp.src('./src')
-        .pipe(gulp.dest('./src/**/*.{html,js,css,jpg}'))
+    return gulp.src('./src/**/*.{html,js,css,jpg}')
+        .pipe(gulp.dest('./dist'))
 })
-gulp.task('default', gulp.series('scss', 'js', 'copy', 'watch'))
+gulp.task('server', function() {
+    return gulp.src('./dist')
+        .pipe(server({
+            port: 3000,
+            host: '172.21.66.50',
+            livereload: true,
+            open: true,
+            middleware: function(req, res, next) {
+                if (req.url == '/favicon.ico') {
+                    return res.end()
+                }
+                var pathname = url.parse(req.url).pathname;
+                pathname = pathname == '/' ? 'index.html' : pathname
+                if (pathname) {
+                    res.end(fs.readFileSync(path.join(__dirname, 'dist', pathname)))
+                }
+            }
+        }))
+})
+gulp.task('default', gulp.series('server', 'scss', 'js', 'copy', 'watch'))
