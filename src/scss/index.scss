@@ -1,0 +1,93 @@
+@import "common.scss";
+@import "_minix.scss";
+$font-size:37.5px !default;
+@function rem($px) {
+    @return $px / $font-size * 1rem;
+}
+
+%Center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+$bg:background;
+$bor:border;
+$pd:padding;
+$mg:margin;
+* {
+    @include sizing;
+    font-family: "微软雅黑";
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.wrap {
+    @include width(100%);
+    @include height(100%);
+    @include box_flex;
+    flex-direction: column;
+    overflow: auto;
+    font-size: 15px;
+}
+
+.header {
+    @include width(100%);
+    @include height(200px);
+    #{$bg}: rgb(255, 219, 225);
+    position: relative;
+    img {
+        @include width(70px);
+        @include height(70px);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -35px;
+        margin-left: -35px;
+    }
+}
+
+.main {
+    @include width(100%);
+    flex: 1;
+    overflow: auto;
+    input {
+        @include width(80%);
+        @include height(30px);
+        margin: 10px 10%;
+        text-align: center;
+        line-height: 30px;
+        border: 1px solid red;
+        color: red;
+        border-radius: 20px;
+    }
+    p {
+        text-align: center;
+        font-size: 12px;
+    }
+}
+
+.footer {
+    @include width(100%);
+    @include height(80px);
+    #{$bor}-top: 1px solid #eee;
+    box-shadow: 0 0 13px 0 #eee;
+    position: relative;
+    p {
+        font-size: 12px;
+        position: absolute;
+        margin-top: -10px;
+        left: 50%;
+        margin-left: -30px;
+    }
+    .dls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+}
